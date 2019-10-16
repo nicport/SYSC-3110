@@ -2,13 +2,12 @@
 public class GamePiece {
 	protected int x;
 	protected int y;
-	protected boolean fox;
-	protected boolean bunny;
-	protected boolean mushroom;
-	protected boolean updown;
 	private int size;
 	
-	public GamePiece() {
+	public GamePiece(int x, int y, int size) {
+		this.x = x;
+		this.y = y;
+		this.size = size;
 	}
 
 	public boolean getUpDown() {
