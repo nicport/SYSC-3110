@@ -3,12 +3,8 @@ public class Bunny extends GamePiece {
 	private String name;
 	
 	public Bunny(String s, int xpos, int ypos) {
-		name = s;
-		x = xpos;
-		y = ypos;
-		fox = false;
-		bunny = true;
-		mushroom = false;
+		super(xpos, ypos, 1);
+		this.name = s;
 	}
 	public void move() {
 		
