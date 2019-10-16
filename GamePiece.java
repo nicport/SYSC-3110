@@ -3,11 +3,13 @@ public class GamePiece {
 	protected int x;
 	protected int y;
 	private int size;
+	private String name;
 	
-	public GamePiece(int x, int y, int size) {
+	public GamePiece(int x, int y, int size, String name) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
+		this.name = name;
 	}
 
 	public boolean getUpDown() {
@@ -25,9 +27,7 @@ public class GamePiece {
 	public int getSize() {
 		return size;
 	}
-
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getName(){
+		return this.name;
 	}
 }
