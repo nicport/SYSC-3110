@@ -1,22 +1,16 @@
 
 public class Fox extends GamePiece {
 	private String name;
+	private boolean upDown;
 	
-	public Fox(String s, int xpos, int ypos, int direction) {
+	public Fox(String s, int xpos, int ypos, boolean direction) {
+		super(xpos, ypos, 2);
 		name = s;
-		x = xpos;
-		y = ypos;
-		fox = true;
-		bunny = false;
-		mushroom = false;
-		
-		if(direction == 1) {
-			updown = true;
-		}else updown = false;		
+		upDown = direction;	
 	}
 	
 	public boolean getUpDown() {
-		return updown;
+		return upDown;
 	}
 	@Override
 	public String getName(){
