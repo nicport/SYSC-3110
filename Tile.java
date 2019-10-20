@@ -1,40 +1,36 @@
-
 public class Tile {
 	private boolean empty;
 	private boolean grass;
-	private Object ontop;
+	private GamePiece ontop;
 	
 	public Tile(int x, int y) {
 		empty = true;
 		ontop = null;
-		//Top left Hole
-		if(x==0 && y == 0) {
-			grass = false;
-		}
-		//Top right Hole
-		else if(x==0 && y==4) {
-			grass = false;
-		}
+		//Corner hole
+		if((x % 4) == 0 && (y % 4) == 0) grass = false;
 		//Center Hole
-		else if(x==2 && y == 2) {
-			grass = false;
-		}
-		//Bottom left Hole
-		else if(x==4 && y==0) {
-			grass = false;
-		}
-		//Bottom right Hole
-		else if(x==4 && y==4) {
-			grass = false;
-		}
+		else if(x==2 && y == 2) grass = false;
 		else grass = true;
 	}
-	public void setOnTop(Object o) {
-		ontop = o;
-	}
-	public void setFull() {
+	
+	public void setOnTop(GamePiece g) {
+		ontop = g;
 		empty = false;
 	}
+	
+	public GamePiece getOnTop() {
+		return this.ontop;
+	}
+	
+	public void setEmpty() {
+		empty = true;
+		ontop = null;
+	}
+	
+	public boolean isEmpty() {
+		return this.empty;
+	}
+	
 	public void printTile() {
 		if(empty) {
 			if(grass) {
@@ -51,6 +47,16 @@ public class Tile {
 			else if(ontop.getClass() == Fox.class) {
 				System.out.print("[F]");
 			}else System.out.print("ontop = "+ ontop);
+		}
+	}
+	
+	public String toString() {
+		if(empty) {
+			if(grass) return "[ ]";
+			else return "[O]";		
+		}
+		else {
+			return ontop.toString();
 		}
 	}
 }

@@ -1,17 +1,52 @@
 
 public class Fox extends GamePiece {
 	private boolean upDown;
+	private int backX, backY;
 	
 	public Fox(String s, int xpos, int ypos, boolean direction) {
+		//The x and y positions that will be stored will be the smaller values (closer to (0, 0))
+		//This means when going from 
 		super(xpos, ypos, 2, s);
-		upDown = direction;	
+		upDown = direction;
+		if(direction) {
+			backX = x;
+			backY = y + 1;
+		}
+		else {
+			backX = x + 1;
+			backY = y;
+		}
 	}
 	
 	public boolean getUpDown() {
 		return upDown;
 	}
+	
+	public int getBackX() {
+		return backX;
+	}
+	
+	public int getBackY() {
+		return backY;
+	}
 
-	public void move() {
-		
+	@Override
+	public String toString() {
+		return super.getName();
+	}
+	
+	@Override
+	public void move(int direction) {
+		super.move(direction);
+		switch(direction) {
+			case 0: 
+				if(this.y != 0) this.backY = this.backY - 1; // moving up
+			case 1: 
+				if(this.x != GameBoard.SIZE) this.backX = this.backX + 1; // moving right
+			case 2: 
+				if(this.y != GameBoard.SIZE) this.backY = this.backY + 1; // moving down
+			case 3: 
+				if(this.x != 0) this.backX = this.backX - 1; // moving left
+		}
 	}
 }
