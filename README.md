@@ -1,10 +1,1 @@
-# SYSC-3110
-
-Authors: 
-Sean Wallach
-Andrew Foster
-Ashton Mohns
-Nicholas Porter
-
-Milestone 1
-
+Most of the code here should be working, I just haven't had time to get the read-eval-print loop working in the Game class yet. For whatever reason, I'm getting an error when I try to run line 47 "input.nextLine()". Not sure why this is, need to figure that out and finish the Game class. Other than that (and more thorough testing), I believe this is a decent start.
