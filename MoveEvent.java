@@ -1,3 +1,4 @@
+//Class written by Ashton and Andrew
 
 public class MoveEvent {
 	private int startingX, startingY, direction;

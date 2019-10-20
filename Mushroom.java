@@ -1,3 +1,5 @@
+//Class written by Ashton and Andrew
+
 public class Mushroom extends GamePiece {
 	
 	public Mushroom(String s, int xpos, int ypos) {

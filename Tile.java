@@ -1,3 +1,5 @@
+//Class written by Ashton and Andrew
+
 public class Tile {
 	private boolean empty;
 	private boolean grass;
@@ -29,6 +31,10 @@ public class Tile {
 	
 	public boolean isEmpty() {
 		return this.empty;
+	}
+	
+	public boolean getGrass() {
+		return this.grass;
 	}
 	
 	public void printTile() {
