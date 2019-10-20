@@ -1,3 +1,6 @@
+
+//Class written by Ashton and Andrew
+
 import java.util.ArrayList;
 
 public class GameBoard {
@@ -11,37 +14,32 @@ public class GameBoard {
 		
 		for(int i = 0; i < SIZE; i++) {
 			for(int j = 0; j < SIZE; j++) {
-				tiles[i][j] = new Tile(j,i);						
+				tiles[i][j] = new Tile(i, j);				
 			}
 		}
 		
-		for(int i = 0; i < SIZE; i++) {
-			for(int j = 0; j < SIZE; j++) {
-				for(int piece = 0; piece < 8; piece ++) {
-					if(boardpieces.get(piece).getX() == j && boardpieces.get(piece).getY() == i) {
-						
-						tiles[i][j].setOnTop(boardpieces.get(piece));
-						
-						if(boardpieces.get(piece) instanceof Fox) {
-							if(((Fox) boardpieces.get(piece)).getUpDown())
-								tiles[i+1][j].setOnTop(boardpieces.get(piece));
-							else
-								tiles[i][j+1].setOnTop(boardpieces.get(piece));
-						}
-					}
-				}
+		for(GamePiece g: boardpieces) {
+			int i = g.getX();
+			int j = g.getY();
+			tiles[i][j].setOnTop(g);
+			if(g instanceof Fox) {
+				if(((Fox) g).getUpDown())
+					tiles[i][j + 1].setOnTop(g);
+				else
+					tiles[i + 1][j].setOnTop(g);
 			}
 		}
 	}
 	
 	public void movePiece(int x, int y, int direction) {
 		GamePiece g = tiles[x][y].getOnTop();
-		Tile newTile = null;
+		Tile newTile = tiles[x][y];
 		
 		switch(direction) {
 			case 0: 
 				if(y == 0) System.out.println("Cannot move up.");
 				else newTile = tiles[x][y - 1]; // moving up
+				break;
 			
 			case 1: 
 				
@@ -49,30 +47,39 @@ public class GameBoard {
 				else {
 					
 					if(g instanceof Fox) {
-						if(x + 1 == GameBoard.SIZE) System.out.println("Cannot move right.");
+						if(x + 2 == GameBoard.SIZE) System.out.println("Cannot move right.");
 						else newTile = tiles[x + 2][y];
 					}
 					else newTile = tiles[x + 1][y]; // moving right
 				}
+				break;
 			
 			case 2: 
 				
 				if(y == GameBoard.SIZE) System.out.println("Cannot move down.");
 				else {
 					if(g instanceof Fox) {
-						if(y + 1 == GameBoard.SIZE) System.out.println("Cannot move down.");
+						if(y + 2 == GameBoard.SIZE) System.out.println("Cannot move down.");
 						else newTile = tiles[x][y + 2];
 					}
 					else newTile = tiles[x][y + 1]; // moving down
 				}
+				break;
 			
 			case 3: 
 				if(x == 0) System.out.println("Cannot move left.");
 				else newTile = tiles[x - 1][y]; // moving left
-			default: System.out.println("Illegal direction.");
+				break;
+				
+			default: 
+				System.out.println("Illegal direction.");
+				break;
 		}
 		
 		if(newTile != null) {
+			if(g instanceof Fox) {
+				tiles[((Fox) g).getBackX()][((Fox) g).getBackY()].setEmpty();
+			}
 			g.move(direction);
 			tiles[x][y].setEmpty();
 			
@@ -85,7 +92,9 @@ public class GameBoard {
 			
 			if(g instanceof Fox) {
 				tiles[((Fox) g).getBackX()][((Fox) g).getBackY()].setOnTop(g);
+				newTile = tiles[g.getX()][g.getY()];
 			}
+			
 			newTile.setOnTop(g);
 			
 		}
@@ -98,7 +107,7 @@ public class GameBoard {
 	public void printBoard() {
 		for(int i = 0; i < SIZE; i++) {
 			for(int j = 0; j < SIZE; j++) {
-				tiles[i][j].printTile();
+				tiles[j][i].printTile();
 			}
 			System.out.println("");
 		}

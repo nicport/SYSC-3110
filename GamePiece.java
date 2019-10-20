@@ -1,3 +1,5 @@
+//Class written by Ashton and Andrew
+
 public abstract class GamePiece {
 	protected int x;
 	protected int y;
@@ -51,15 +53,19 @@ public abstract class GamePiece {
 			case 0: 
 				if(this.x == 0) m.getSource().move(2);
 				else m.getSource().move(0);
+				break;
 			case 1:
 				if(this.y == GameBoard.SIZE - 1) m.getSource().move(3);
 				else m.getSource().move(1);
+				break;
 			case 2:
 				if(this.x == GameBoard.SIZE - 1) m.getSource().move(0);
 				else m.getSource().move(2);
+				break;
 			case 3:
 				if(this.y == 0) m.getSource().move(1);
 				else m.getSource().move(3);
+				break;
 		}
 			
 	}
@@ -97,16 +103,22 @@ public abstract class GamePiece {
 			case 0: 
 				if(this.y == 0) System.out.println("Cannot move up.");
 				else this.setY(this.y - 1); // moving up
+				break;
 			case 1: 
-				if(this.x == GameBoard.SIZE) System.out.println("Cannot move right.");
+				if(this.x == GameBoard.SIZE - 1) System.out.println("Cannot move right.");
 				else this.setX(this.x + 1); // moving right
+				break;
 			case 2: 
-				if(this.y == GameBoard.SIZE) System.out.println("Cannot move down.");
+				if(this.y == GameBoard.SIZE - 1) System.out.println("Cannot move down.");
 				else this.setY(this.y + 1); // moving down
+				break;
 			case 3: 
 				if(this.x == 0) System.out.println("Cannot move left.");
 				else this.setX(this.x - 1); // moving left
-			default: System.out.println("Illegal direction.");
+				break;
+			default: 
+				System.out.println("Illegal direction.");
+				break;
 		}
 	}
 	
