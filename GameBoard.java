@@ -1,13 +1,21 @@
-
 //Class written by Ashton and Andrew
 
 import java.util.ArrayList;
 
+/**
+ * Class GameBoard
+ * @author (of JavaDoc comments) Nicholas
+ */
 public class GameBoard {
 	public static final int SIZE = 5;
 	private Tile[][] tiles;
 	private ArrayList<GamePiece> boardpieces;
 	
+	/**
+	 * GameBoard constructor
+	 * create a game board
+	 * @param p Arraylist of game pieces
+	 */
 	public GameBoard(ArrayList<GamePiece> p) {
 		boardpieces = p;
 		tiles = new Tile[SIZE][SIZE];
@@ -31,6 +39,12 @@ public class GameBoard {
 		}
 	}
 	
+	/**
+	 * Method movePiece moves game piece in specified direction
+	 * @param x X-coordinate to where game piece is moving
+	 * @param y Y-coordinate to where game piece is moving
+	 * @param direction Direction game piece is moving
+	 */
 	public void movePiece(int x, int y, int direction) {
 		GamePiece g = tiles[x][y].getOnTop();
 		Tile newTile = tiles[x][y];
@@ -131,10 +145,20 @@ public class GameBoard {
 		}
 	}
 	
+	/**
+	 * Method getTile gets the tile at the specified 
+	 * coordinates
+	 * @param x X-coordinate
+	 * @param y Y-coordinate
+	 * @return Tile tile at specified x,y coordinate
+	 */
 	public Tile getTile(int x, int y) {
 		return this.tiles[x][y];
 	}
 	
+	/**
+	 * Method printBoard prints the game board
+	 */
 	public void printBoard() {
 		for(int i = 0; i < SIZE; i++) {
 			for(int j = 0; j < SIZE; j++) {
